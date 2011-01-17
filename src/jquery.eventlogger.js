@@ -1,3 +1,10 @@
+/*
+* jquery eventlogger
+*
+* Copyright (c) 2011 Anders Bondehagen (anders@bondehagen.com)
+* Licensed under the MIT license.
+*
+*/
 (function() {
 
    var lastEventTime = new Date();
@@ -63,8 +70,7 @@
       console.groupEnd();
 
       // Execute the original jQuery method.
-      var ret = jQueryHandle.apply(this, arguments);
-      return ret;
+      return jQueryHandle.apply(this, arguments);
    };
 
 })();
