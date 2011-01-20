@@ -27,7 +27,8 @@
       var ret = jQueryAdd.apply(this, arguments);
 
       console.groupCollapsed("Bind event: " + types);
-      console.log("add: " + types + " elem " + elem.html());
+	  var source = elem == undefined ? "" : elem.html()
+      console.log("add: " + types + " elem " + source);
       console.log(elem);
       console.log(handler.toSource());
       //console.trace();
