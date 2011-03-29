@@ -3,13 +3,16 @@
 <head>
    <title>demo</title>
    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-   <script type="text/javascript" src="jquery.eventlogger.min.js"></script>
+   <script type="text/javascript" src="src/jquery.eventlogger.js"></script>
    <script type="text/javascript">
    (function($) {
     $(function() {
 		$("html").click(function() {
 			$("body").append(". ");
+		}).mousemove(function() {
+			// Should be excluded
 		});
+
 	})
    })(jQuery);
    </script>
