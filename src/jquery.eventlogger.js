@@ -11,17 +11,27 @@
    var jQueryHandle = jQuery.event.handle;
    var jQueryAdd = jQuery.event.add;
    var showBind = true;
-   var excludeFilter = excludeFilter || ["mousemove"];
+   var excludeFilter = excludeFilter || ["mousemove", "mouseover", "mouseout", "mouseleave", "load"];
 
    function getHtml(htmlElement) {
       if (!(htmlElement instanceof HTMLElement))
          return "";
 
       var a = htmlElement.attributes, str = "<" + htmlElement.tagName.toLowerCase();
-      for (var i in a) if (a[i].specified)
-         str += " " + a[i].name + '="' + a[i].value + '"';
+      for (var i = 0, len = a.length; i < len; i++) {
+         if (a[i].specified)
+            str += " " + a[i].name + '="' + a[i].value + '"';
+      }
 
       return str + " />";
+   }
+
+   function getSource(object) {
+      if(object.toSource)
+         return object.toSource();
+      /*if(JSON && JSON.stringify)
+         return JSON.stringify(object);*/
+      return object.toString();
    }
 
    function formatTime(time) {
@@ -37,7 +47,7 @@
       console.groupCollapsed("Bind event: " + types);
       console.log("add: " + types + " elem " + getHtml(elem));
       console.log(elem);
-      console.log(handler.toSource());
+      console.log(getSource(handler));
       //console.trace();
       console.groupEnd();
       return ret;
@@ -75,7 +85,7 @@
          handlers = handlers.slice(0);
 
          for (var j = 0, l = handlers.length; j < l; j++) {
-            console.log(handlers[j].handler.toSource());
+            console.log(getSource(handlers[j].handler));
          }
       }
 
